@@ -26,6 +26,9 @@ public typealias Storage = ReadableStorage & WritableStorage
 public enum StorageError: Error {
     case notFound
     case cantWrite(Error)
+    case cantList(Error)
+    case cantMove(Error)
+    case cantRemove(Error)
 }
 
 public class DiskStorage {
@@ -78,6 +81,56 @@ extension DiskStorage {
                 attributes: nil
             )
         }
+    }
+
+    public func listFiles(in url: URL) throws -> [URL]? {
+
+        do {
+            let directoryContents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+
+            // Print the urls of the files contained in the documents directory
+            return directoryContents
+        } catch {
+            throw StorageError.cantList(error)
+        }
+
+    }
+
+    public func listFiles(url: URL, handler: @escaping StorageHandler<[URL]>) {
+
+        queue.async {
+            do {
+                let directoryContents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+
+                handler(.success(directoryContents))
+            } catch {
+                handler(.failure(error))
+            }
+        }
+    }
+
+
+    public func removeFiles(urls: [URL]) throws {
+
+        do {
+            for url in urls {
+                try FileManager.default.removeItem(at: url)
+            }
+
+        } catch {
+            throw StorageError.cantRemove(error)
+        }
+
+    }
+
+    public func moveFile(from: URL, to: URL) throws {
+
+        do {
+            try FileManager.default.moveItem(at: from, to: to)
+        } catch {
+            throw StorageError.cantMove(error)
+        }
+
     }
 }
 
