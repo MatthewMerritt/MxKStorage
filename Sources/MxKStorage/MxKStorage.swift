@@ -109,6 +109,32 @@ extension DiskStorage {
         }
     }
 
+    public func listFiles(url: URL, matching: String) -> [URL] {
+
+        let enumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: nil)
+        var files: [URL] = []
+
+        while let element = enumerator?.nextObject() as? URL,element.pathExtension == matching {
+            files.append(element)
+        }
+
+        return files
+    }
+
+
+    public func listFiles(url: URL, matching: String, handler: @escaping StorageHandler<[URL]>) {
+
+        let enumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: nil)
+        var files: [URL] = []
+
+        while let element = enumerator?.nextObject() as? URL, element.pathExtension == matching {
+            files.append(element)
+        }
+
+        handler(.success(files))
+
+    }
+
 
     public func removeFiles(urls: [URL]) throws {
 
