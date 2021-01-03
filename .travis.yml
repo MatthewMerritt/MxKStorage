@@ -4,8 +4,8 @@ language: swift
 osx_image: xcode11
 env:
   - PROJECT_NAME=MxKStorage
-install: (cd $PROJECT_NAME && swift package update)
+install: (cd Sources/$PROJECT_NAME && swift package update)
 script:
-  - (cd $PROJECT_NAME && swift build)
-  - (cd $PROJECT_NAME && swift test)
+  - (cd Sources/$PROJECT_NAME && swift build)
+  - (cd Sources/$PROJECT_NAME && swift test)
 
