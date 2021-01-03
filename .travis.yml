@@ -7,5 +7,3 @@ env:
 install: (cd Sources/$PROJECT_NAME && swift package update)
 script:
   - (cd Sources/$PROJECT_NAME && swift build)
-  - (cd Sources/$PROJECT_NAME && swift test)
-

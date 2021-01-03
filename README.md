@@ -2,6 +2,12 @@
 
 Use MxKStorage to store Codable objects to local files.
 
+[![CI Status](https://img.shields.io/travis/MatthewMerritt/MxKStorage.svg?style=flat)](https://travis-ci.org/MatthewMerritt/MxKStorage)
+[![ Swift](https://img.shields.io/badge/Swift-5.x-orange.svg?style=flat)](https://travis-ci.org/MatthewMerritt/MxKStorage)
+[![Version](https://img.shields.io/cocoapods/v/MxKStorage.svg?style=flat)](https://github.com/MatthewMerritt/MxKStorage)
+[![License](https://img.shields.io/github/license/MatthewMerritt/MxKStorage?style=flat)](https://cocoapods.org/pods/MxKStorage)
+[![Platform](https://img.shields.io/cocoapods/p/MxKStorage.svg?style=flat)](https://cocoapods.org/pods/MxKStorage)
+
 ## Installation
 
 MxKStorage is available through SwiftPM.
